@@ -1,17 +1,16 @@
 'use strict';
 
-var TimestampHandler = require(process.cwd() + '/app/controllers/timestampHandler.server.js');
+var URLShortHandler = require(process.cwd() + '/app/controllers/urlShortHandler.server.js');
 
 module.exports = function (app, db) {
   
-  var timestampHandler = new TimestampHandler(db);
+  var urlShortHandler = new URLShortHandler(db);
   
   app.route('/')
     .get(function (req, res) {
       res.sendFile(process.cwd() + '/public/index.html');
-      console.log("Getting homepage...");
     });
     
-  app.route('/:dateTime')
-    .get(timestampHandler.getTimestamp);
+  app.route('/new/:URL')
+    .get(urlShortHandler.getURL);
 };
