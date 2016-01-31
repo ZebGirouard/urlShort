@@ -3,10 +3,16 @@
 function URLShortHandler () {
 	
 	this.getURL = function (req, res) {
-	    var URL = req.params.URL;
-		var urlValid = true;
-		if (urlValid) {
-		    res.json({original_url: URL, short_url: "testest"});
+		var rawURL = req.url;
+		var myRegEx = /new\/(.*)/;
+		var originalURL = myRegEx.exec(rawURL)[1];
+		console.log(originalURL);
+	    var isURL = function (string) {
+		  var pattern = /^http|https:\/\/.+\..+/
+		  return pattern.test(string);
+		}
+		if (isURL(originalURL)) {
+		    res.json({original_url: originalURL, short_url: "coming soon"});
 		}
 		else {
 		    res.json({error:"URL invalid"});

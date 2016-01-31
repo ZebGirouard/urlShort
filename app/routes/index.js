@@ -11,6 +11,6 @@ module.exports = function (app, db) {
       res.sendFile(process.cwd() + '/public/index.html');
     });
     
-  app.route('/new/:URL')
+  app.route('/new/:anything*')
     .get(urlShortHandler.getURL);
 };
