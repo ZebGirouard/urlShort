@@ -13,4 +13,7 @@ module.exports = function (app, db) {
     
   app.route('/new/:anything*')
     .get(urlShortHandler.getURL);
+    
+  app.route('/:id')
+    .get(urlShortHandler.redirectURL);
 };
